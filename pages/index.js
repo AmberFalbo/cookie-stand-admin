@@ -1,81 +1,79 @@
 import Head from 'next/head'
+import { useState } from 'react'
 
 export default function Home() {
+
+  const [cookieStandInfo, setCookieStandInfo] = useState('Created Cookie Stands!')
+
+  function cookieStandInfoHandler(event){
+    event.preventDefault();
+    alert(event.target.cookieStandInfo.value)
+  }
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <div className="">
       <Head>
-        <title>Create Next App</title>
+        <title>Cookie Stand Admin</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <header className="flex p-2 bg-green-500">
+        <h1 className="ml-4 text-lg">Cookie Stand Admin</h1>
+      </header>
 
-      <main className="flex flex-col items-center justify-center flex-1 px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome to{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
-            Next.js!
-          </a>
-        </h1>
+      <main className="p-4 ml-20 mr-20 bg-cover bg-green-50">
+        <div className="flex items-center p-2 mx-auto bg-green-300 rounded">
 
-        <p className="mt-3 text-2xl">
-          Get started by editing{' '}
-          <code className="p-3 font-mono text-lg bg-gray-100 rounded-md">
-            pages/index.js
-          </code>
-        </p>
+          <div className="p-2 text-center">
 
-        <div className="flex flex-wrap items-center justify-around max-w-4xl mt-6 sm:w-full">
-          <a
-            href="https://nextjs.org/docs"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Find in-depth information about Next.js features and API.
-            </p>
-          </a>
+            <div className="w-full">
+            <h2 className="w-full text-xl text-center">Create Cookie Stand</h2>
+            </div>
 
-          <a
-            href="https://nextjs.org/learn"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Learn &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Learn about Next.js in an interactive course with quizzes!
-            </p>
-          </a>
+            <div>
+            <form on Submit={cookieStandInfoHandler} className="m-1 mx-auto text-sm border-green-400 md:flex md:flex-wrap md:justify-between">
+              
+              <div className="flex w-full mx-auto">
+              <label className="h-2 p-1">Location</label>
+              <input className="flex w-full "></input>
+              </div>
 
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Examples &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Discover and deploy boilerplate example Next.js projects.
-            </p>
-          </a>
+              <div className="flex w-full p-2 mx-auto mt-4 text-xs">
 
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Deploy &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+                <div>
+                <label className="p-1 mt-3">Minimum Customers per Hour</label>
+                <input className="flex w-40 "></input>
+                </div>
+
+                <div>
+                <label className="p-1 mt-3">Maximum Customers per Hour</label>
+                <input className="flex w-40 "></input>
+                </div>
+
+                <div>
+                <label className="p-1 mt-3">Average Cookies per Sale</label>
+                <input className="flex w-40"></input>
+                </div>
+                
+                <div className="ml-auto">
+                <button className="flex px-16 py-4 bg-green-500" value="submit" type="Submit">Create</button>
+                </div>
+                
+              </div>
+
+            </form>
+            </div>
+          </div>
         </div>
+
+        <p className="p-2 text-center">Report Table Coming Soon..</p>
+
+        <p className="p-2 text-center">{cookieStandInfo}</p>
+
+
       </main>
 
-      <footer className="flex items-center justify-center w-full h-24 border-t">
-        <a
-          className="flex items-center justify-center"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="h-4 ml-2" />
-        </a>
+      <footer className="flex p-3 text-gray-600 bg-green-500">
+        <p className="ml-4">&copy; 2021</p>
       </footer>
     </div>
   )

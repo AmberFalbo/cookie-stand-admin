@@ -3,11 +3,16 @@ import { useState } from 'react'
 
 export default function Home() {
 
-  const [cookieStandInfo, setCookieStandInfo] = useState('Created Cookie Stands!')
+  const [cookieStandInfo, setCookieStandInfo] = useState("")
 
-  function cookieStandInfoHandler(event){
+  function formHandler(event){
     event.preventDefault();
-    alert(event.target.cookieStandInfo.value)
+    // alert(event.target.cookieStandInfo.value)
+
+    const formData = new FormData(event.target)
+    const cookieStandInfo = JSON.stringify(Object.fromEntries(formData))
+    setCookieStandInfo(cookieStandInfo);
+
   }
 
   return (
@@ -30,28 +35,28 @@ export default function Home() {
             </div>
 
             <div>
-            <form on Submit={cookieStandInfoHandler} className="m-1 mx-auto text-sm border-green-400 md:flex md:flex-wrap md:justify-between">
+            <form name="formData" onSubmit={formHandler} className="m-1 mx-auto text-sm border-green-400 md:flex md:flex-wrap md:justify-between">
               
               <div className="flex w-full mx-auto">
-              <label className="h-2 p-1">Location</label>
-              <input className="flex w-full "></input>
+              <label for="location" className="h-2 p-1">Location</label>
+              <input name="location" className="flex w-full "></input>
               </div>
 
               <div className="flex w-full p-2 mx-auto mt-4 text-xs">
 
                 <div>
-                <label className="p-1 mt-3">Minimum Customers per Hour</label>
-                <input className="flex w-40 "></input>
+                <label for="minimum" className="p-1 mt-3">Minimum Customers per Hour</label>
+                <input name="minimum" className="flex w-40 "></input>
                 </div>
 
                 <div>
-                <label className="p-1 mt-3">Maximum Customers per Hour</label>
-                <input className="flex w-40 "></input>
+                <label for="maximum" className="p-1 mt-3">Maximum Customers per Hour</label>
+                <input name="maximum" className="flex w-40 "></input>
                 </div>
 
                 <div>
-                <label className="p-1 mt-3">Average Cookies per Sale</label>
-                <input className="flex w-40"></input>
+                <label for="average" className="p-1 mt-3">Average Cookies per Sale</label>
+                <input name="average" className="flex w-40"></input>
                 </div>
                 
                 <div className="ml-auto">
@@ -65,7 +70,14 @@ export default function Home() {
           </div>
         </div>
 
-        <p className="p-2 text-center">Report Table Coming Soon..</p>
+        <p className="p-2 text-center">
+          Report Table Coming Soon..
+          
+          {/* <pre>{`
+          {"location":"Barcelona","minCustomers":2,"maxCustomers":4,"avgCookies":2.5}
+          `}</pre> */}
+          
+          </p>
 
         <p className="p-2 text-center">{cookieStandInfo}</p>
 
